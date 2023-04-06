@@ -99,6 +99,43 @@ public class TestRadio {
         Assertions.assertEquals(expected, radio.getCurrentVolume());
     }
 
+    @Test
+    void shouldCheckVolumeUp () {
+        int volume = 10;
+        int expected = 10;
+
+        radio.setCurrentVolume(volume);
+        radio.increaseVolume();
+        Assertions.assertEquals(expected, radio.getCurrentVolume());
+    }
+
+    @Test
+    void shouldCheckVolumeDown (){
+        int volume = 0;
+        int expected = 0;
+
+        radio.setCurrentVolume(volume);
+        radio.decreaseVolume();
+        Assertions.assertEquals(expected, radio.getCurrentVolume());
+    }
+
+    @Test
+    void shouldCheckVolumeLimitUp () {
+        int volume = 11;
+        int expected = 0;
+
+        radio.setCurrentVolume(volume);
+        Assertions.assertEquals(expected, radio.getCurrentVolume());
+    }
+
+    @Test
+    void shouldCheckVolumeLimitDown () {
+        int volume = -1;
+        int expected = 0;
+
+        radio.setCurrentVolume(volume);
+        Assertions.assertEquals(expected, radio.getCurrentVolume());
+    }
 
 
 
