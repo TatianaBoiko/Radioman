@@ -8,7 +8,7 @@ public class TestRadio {
     @Test
     void shouldGetCurrentRadioStation () {
         int expected = 1;
-        radio.setCurrentRadioStation(expected);
+        radio.setCurrentRadioStation (expected);
 
         Assertions.assertEquals (expected, radio.getCurrentRadioStation());
     }
