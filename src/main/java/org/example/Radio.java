@@ -1,45 +1,49 @@
 package org.example;
 
 public class Radio {
-    private int LastRadioStationNumber = 9;
-    private int FirstRadioStationNumber = 0;
-    private int currentRadioStation;
-    private int maxVolume = 10;
+    private int currentRadioStationQnt;
+    private int maxRadioStation = 10;
+    private int minRadioStation = 0;
+    private int maxVolume = 100;
     private int minVolume = 0;
     private int currentVolume;
 
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
+    public Radio() {
     }
 
-    public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation < FirstRadioStationNumber) {
+    public Radio(int radioStationQnt) {
+        this.currentRadioStationQnt = radioStationQnt - 1;
+        this.maxRadioStation = minRadioStation + currentRadioStationQnt;
+    }
+
+    public void setCurrentRadioStation(int currentRadioStationQnt) {
+        if (currentRadioStationQnt < minRadioStation) {
             return;
         }
-        if (currentRadioStation > LastRadioStationNumber) {
+        if (currentRadioStationQnt > maxRadioStation) {
             return;
         }
-        this.currentRadioStation = currentRadioStation;
+        this.currentRadioStationQnt = currentRadioStationQnt;
+    }
+
+    public int getCurrentRadioStation() {
+        return currentRadioStationQnt;
     }
 
     public void setNextRadioStation() {
-        if (currentRadioStation == LastRadioStationNumber) {
-            this.currentRadioStation = 0;
+        if (currentRadioStationQnt == maxRadioStation) {
+            this.currentRadioStationQnt = minRadioStation;
             return;
         }
-        this.currentRadioStation = currentRadioStation + 1;
+        this.currentRadioStationQnt = currentRadioStationQnt + 1;
     }
 
     public void setPrevRadioStation() {
-        if (currentRadioStation == FirstRadioStationNumber) {
-            this.currentRadioStation = 9;
+        if (currentRadioStationQnt == minRadioStation) {
+            this.currentRadioStationQnt = maxRadioStation;
             return;
         }
-        this.currentRadioStation = currentRadioStation - 1;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
+        this.currentRadioStationQnt = currentRadioStationQnt - 1;
     }
 
     public void setCurrentVolume(int currentVolume) {
@@ -59,11 +63,14 @@ public class Radio {
         this.currentVolume = currentVolume + 1;
     }
 
-
     public void decreaseVolume() {
         if (currentVolume == minVolume) {
             return;
         }
         this.currentVolume = currentVolume - 1;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 }
